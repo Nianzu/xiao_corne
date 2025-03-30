@@ -29,6 +29,15 @@ void loop() {}
 
 #include "USB.h"
 #include "USBHIDKeyboard.h"
+#include <Adafruit_NeoPixel.h>
+
+// Define the number of NeoPixels and the data pin
+#define NUMPIXELS 21  // Adjust this to the actual number of pixels
+#define PIN 9       // Adjust this to the correct data pin on your XIAO ESP32S3
+
+// Create NeoPixel object
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
 USBHIDKeyboard Keyboard;
 
 int last_state[5][5] = {
@@ -63,7 +72,35 @@ void setup() {
   // initialize control over the keyboard:
   Keyboard.begin();
   USB.begin();
+
+  pixels.begin();
+
+  // Set all pixels to red
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(255, 0, 0)); // Red
+  }
+  pixels.show(); // Send the updated pixel colors to the hardware
+  delay(1000); // Wait for 1 second
+
+  // Set all pixels to green
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(0, 255, 0)); // Green
+  }
+  pixels.show();
+  delay(1000); // Wait for 1 second
+
+  // Set all pixels to blue
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(0, 0, 255)); // Blue
+  }
+  pixels.show();
+  delay(1000); // Wait for 1 second
+    for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(255, 255, 255)); // Blue
+  }
+  pixels.show();
 }
+
 
 void loop() {
   for (int c = 0; c < sizeof cols / sizeof cols[0]; c++) {
@@ -84,3 +121,280 @@ void loop() {
   }
 }
 #endif /* ARDUINO_USB_MODE */
+
+10
+7
+14
+15
+7
+14
+15
+7
+15
+13
+11
+9
+9
+8
+13
+11
+20
+16
+17
+17
+21
+18
+21
+19
+12
+15
+15
+14
+7
+14
+10
+6
+5
+4
+15
+3
+2
+1
+1
+1
+19
+12
+15
+14
+7
+10
+10
+7
+14
+15
+12
+15
+12
+14
+15
+12
+19
+15
+12
+19
+20
+11
+16
+11
+16
+20
+11
+13
+16
+20
+13
+16
+20
+20
+16
+20
+16
+20
+16
+20
+16
+20
+16
+20
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+9
+8
+9
+9
+9
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+9
+8
+13
+11
+9
+8
+13
+11
+9
+8
+13
+11
+11
+13
+8
+9
+21
