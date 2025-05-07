@@ -1,24 +1,3 @@
-/*
-  Keyboard Message test
-
-  For the Arduino Leonardo and Micro.
-
-  Sends a text string when a button is pressed.
-
-  The circuit:
-  - pushbutton attached from pin 0 to ground
-  - 10 kilohm resistor attached from pin 0 to +5V
-
-  created 24 Oct 2011
-  modified 27 Mar 2012
-  by Tom Igoe
-  modified 11 Nov 2013
-  by Scott Fitzgerald
-
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/KeyboardMessage
-*/
 #ifndef ARDUINO_USB_MODE
 #error This ESP32 SoC has no Native USB interface
 #elif ARDUINO_USB_MODE == 1
@@ -33,32 +12,58 @@ void loop() {}
 
 // Define the number of NeoPixels and the data pin
 #define NUMPIXELS 21  // Adjust this to the actual number of pixels
-#define PIN 9       // Adjust this to the correct data pin on your XIAO ESP32S3
+#define PIN 9         // Adjust this to the correct data pin on your XIAO ESP32S3
+
+#define IS_LEFT
 
 // Create NeoPixel object
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 USBHIDKeyboard Keyboard;
 
+class key {
+public:
+  int x;
+  int y;
+  key(int x, int y) {
+    this->x = x;
+    this->y = y;
+  }
+};
+
 int last_state[5][5] = {
-  {0, 0, 0, 0, 0},
-  {0, 0, 0, 0, 0},
-  {0, 0, 0, 0, 0},
-  {0, 0, 0, 0, 0},
-  {0, 0, 0, 0, 0},
+  { 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0 },
 };
 
-
-int keymap[5][5] = {
-  {1, 2, 3, 4, 5},
-  {6, 7, 8, 9, 10},
-  {11, 12, 13, 14, 15},
-  {16, 17, 18, 19, 20},
-  {21, 22, 23, 24, 25},
+#ifdef IS_LEFT
+// Left keymap
+key keymap[5][5] = {
+  { key(0, 3), key(1, 3), key(2, 3), key(3, 3), key(4, 3) },
+  { key(5, 3), key(4, 2), key(4, 1), key(5, 1), key(5, 2) },
+  { key(2, 1), key(1, 2), key(3, 1), key(3, 2), key(2, 2) },
+  { key(1, 1), key(2, 0), key(1, 0), key(0, 2), key(0, 1) },
+  { key(0, 0), key(-1, -1), key(-1, -1), key(-1, -1), key(-1, -1) },
 };
+#else
+// Right keymap
+key keymap[5][5] = {
+  { key(5, 1), key(5, 2), key(4, 3), key(4, 2), key(5, 3) },
+  { key(2, 3), key(1, 3), key(0, 3), key(3, 3), key(3, 2) },
+  { key(3, 1), key(2, 0), key(2, 1), key(1, 0), key(4, 1) },
+  { key(2, 2), key(0, 2), key(0, 1), key(1, 2), key(1, 1) },
+  { key(0, 0), key(-1, -1), key(-1, -1), key(-1, -1), key(-1, -1) },
+};
+#endif
 
-int cols[5] = {6, 43, 44, 7, 8};
-int rows[5] = {1, 2, 3, 4, 5};
+
+
+
+int cols[5] = { 6, 43, 44, 7, 8 };
+int rows[5] = { 1, 2, 3, 4, 5 };
 
 void setup() {
   Serial1.end();
@@ -78,37 +83,37 @@ void setup() {
 
   // Set all pixels to red
   for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(255, 0, 0)); // Red
+    pixels.setPixelColor(i, pixels.Color(255, 0, 0));  // Red
   }
-  pixels.show(); // Send the updated pixel colors to the hardware
-  delay(1000); // Wait for 1 second
+  pixels.show();  // Send the updated pixel colors to the hardware
+  delay(250);     // Wait for 1 second
 
   // Set all pixels to green
   for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(0, 255, 0)); // Green
+    pixels.setPixelColor(i, pixels.Color(0, 255, 0));  // Green
   }
   pixels.show();
-  delay(1000); // Wait for 1 second
+  delay(250);  // Wait for 1 second
 
   // Set all pixels to blue
   for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(0, 0, 255)); // Blue
+    pixels.setPixelColor(i, pixels.Color(0, 0, 255));  // Blue
   }
   pixels.show();
 
-  
+
   // Set all pixels to White
-  delay(1000); // Wait for 1 second
-    for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(255, 255, 255)); // White
+  delay(250);  // Wait for 1 second
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(255, 255, 255));  // White
   }
   pixels.show();
 
-  
+
   // Set all pixels off
-  delay(1000); // Wait for 1 second
-    for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(0, 0, 0)); // Off
+  delay(250);  // Wait for 1 second
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(0, 0, 0));  // Off
   }
   pixels.show();
 }
@@ -124,10 +129,12 @@ void loop() {
       if (last_state[r][c] != current_state) {
         last_state[r][c] = current_state;
         if (current_state) {
-          Keyboard.println(keymap[r][c]);
+
+          Keyboard.print(keymap[r][c].x);
+          Keyboard.print(",");
+          Keyboard.println(keymap[r][c].y);
         }
       }
-
     }
     digitalWrite(cols[c], LOW);
   }
