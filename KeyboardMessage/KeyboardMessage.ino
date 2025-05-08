@@ -10,7 +10,7 @@ void loop() {}
 #include "USBHIDKeyboard.h"
 #define IS_LEFT
 
-#include <Adafruit_NeoPixel.h> // Note, must use version 1.12.3, later versions at least up to 1.12.5 are broken!!!!
+#include <Adafruit_NeoPixel.h>  // Note, must use version 1.12.3, later versions at least up to 1.12.5 are broken!!!!
 #ifdef __AVR__
 #include <avr/power.h>
 #endif
@@ -42,6 +42,13 @@ int last_state[5][5] = {
   { 0, 0, 0, 0, 0 },
 };
 
+int led_map[4][6] = {
+  { 0, 1, 2, 3, 4, 5 },
+  { 15, 14, 13, 10, 9, 6 },
+  { 16, 17, 12, 11, 8, 7 },
+  { 20, 19, 18, 0, 0, 0 },
+};
+
 #ifdef IS_LEFT
 // Left Keymap
 Key Keymap[5][5] = {
@@ -57,6 +64,7 @@ int action_map[4][6] = {
   { 'b', 'v', 'c', 'x', 'z', KEY_NONE },
   { KEY_NONE, KEY_SPACE, KEY_LEFT_CTRL, KEY_NONE, KEY_NONE, KEY_NONE },
 };
+
 #else
 // Right Keymap
 Key Keymap[5][5] = {
@@ -66,25 +74,27 @@ Key Keymap[5][5] = {
   { Key(2, 1), Key(0, 1), Key(0, 2), Key(1, 1), Key(1, 2) },
   { Key(0, 3), Key(-1, -1), Key(-1, -1), Key(-1, -1), Key(-1, -1) },
 };
-#endif
 
+int action_map[4][6] = {
+  { 'y', 'u', 'i', 'o', 'p', KEY_NONE },
+  { 'h', 'j', 'k', 'l', ';', KEY_BACKSPACE },
+  { 'n', 'm', ',', '.', KEY_NONE, KEY_NONE },
+  { KEY_NONE, KEY_KP_ENTER, KEY_LEFT_SHIFT, KEY_NONE, KEY_NONE, KEY_NONE },
+};
+#endif
 void perform_action(Key key, bool down) {
   int sendcode = action_map[key.y][key.x];
   if (sendcode != 0) {
     if (down) {
       Keyboard.press(sendcode);
 
-      pixels.setPixelColor(1, pixels.Color(150, 0, 0));
+      pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(150, 0, 0));
       pixels.show();
-      // Keyboard.print("pressing ");
-      // Keyboard.println(sendcode);
 
     } else {
       Keyboard.release(sendcode);
-      pixels.setPixelColor(1, pixels.Color(0, 0, 0));
+      pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(0, 0, 0));
       pixels.show();
-      // Keyboard.print("releasing ");
-      // Keyboard.println(sendcode);
     }
   }
 }
@@ -93,15 +103,10 @@ int cols[5] = { 6, 43, 44, 7, 8 };
 int rows[5] = { 1, 2, 3, 4, 5 };
 
 void setup() {
-  Serial1.end();
 
   // initialize control over the Keyboard:
   Keyboard.begin();
   USB.begin();
-
-#if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
-  clock_prescale_set(clock_div_1);
-#endif
 
   pixels.begin();
   pixels.clear();
@@ -123,7 +128,7 @@ void loop() {
 
   for (int c = 0; c < sizeof cols / sizeof cols[0]; c++) {
     digitalWrite(cols[c], HIGH);
-    delayMicroseconds(5); // Slight delay for signal settling
+    delayMicroseconds(5);  // Slight delay for signal settling
     for (int r = 0; r < sizeof rows / sizeof rows[0]; r++) {
       int current_state = digitalRead(rows[r]);
       delay(1);
