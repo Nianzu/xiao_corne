@@ -8,16 +8,17 @@ void loop() {}
 
 #include "USB.h"
 #include "USBHIDKeyboard.h"
-#include <Adafruit_NeoPixel.h>
-
-// Define the number of NeoPixels and the data pin
-#define NUMPIXELS 21  // Adjust this to the actual number of pixels
-#define PIN 9         // Adjust this to the correct data pin on your XIAO ESP32S3
-
 #define IS_LEFT
 
-// Create NeoPixel object
+#include <Adafruit_NeoPixel.h> // Note, must use version 1.12.3, later versions at least up to 1.12.5 are broken!!!!
+#ifdef __AVR__
+#include <avr/power.h>
+#endif
+#define PIN 9
+#define NUMPIXELS 21
+
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+#define DELAYVAL 500
 
 USBHIDKeyboard Keyboard;
 
@@ -67,81 +68,62 @@ Key Keymap[5][5] = {
 };
 #endif
 
-int cols[5] = { 6, 43, 44, 7, 8 };
-int rows[5] = { 1, 2, 3, 4, 5 };
-
 void perform_action(Key key, bool down) {
   int sendcode = action_map[key.y][key.x];
   if (sendcode != 0) {
     if (down) {
       Keyboard.press(sendcode);
+
+      pixels.setPixelColor(1, pixels.Color(150, 0, 0));
+      pixels.show();
       // Keyboard.print("pressing ");
       // Keyboard.println(sendcode);
 
     } else {
       Keyboard.release(sendcode);
+      pixels.setPixelColor(1, pixels.Color(0, 0, 0));
+      pixels.show();
       // Keyboard.print("releasing ");
       // Keyboard.println(sendcode);
     }
   }
 }
 
+int cols[5] = { 6, 43, 44, 7, 8 };
+int rows[5] = { 1, 2, 3, 4, 5 };
+
 void setup() {
   Serial1.end();
-  for (int r = 0; r < sizeof rows / sizeof rows[0]; r++) {
-    pinMode(rows[r], INPUT_PULLDOWN);
-  }
-  for (int c = 0; c < sizeof cols / sizeof cols[0]; c++) {
-    pinMode(cols[c], OUTPUT);
-    digitalWrite(cols[c], LOW);
-  }
 
   // initialize control over the Keyboard:
   Keyboard.begin();
   USB.begin();
 
+#if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
+  clock_prescale_set(clock_div_1);
+#endif
+
   pixels.begin();
-
-  // Set all pixels to red
-  for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(255, 0, 0));  // Red
-  }
-  pixels.show();  // Send the updated pixel colors to the hardware
-  delay(250);     // Wait for 1 second
-
-  // Set all pixels to green
-  for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(0, 255, 0));  // Green
-  }
-  pixels.show();
-  delay(250);  // Wait for 1 second
-
-  // Set all pixels to blue
-  for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(0, 0, 255));  // Blue
-  }
+  pixels.clear();
   pixels.show();
 
-
-  // Set all pixels to White
-  delay(250);  // Wait for 1 second
-  for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(255, 255, 255));  // White
-  }
-  pixels.show();
-
-
-  // Set all pixels off
-  delay(250);  // Wait for 1 second
-  for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(0, 0, 0));  // Off
-  }
-  pixels.show();
+  pinMode(1, INPUT_PULLDOWN);
+  pinMode(2, INPUT_PULLDOWN);
+  pinMode(3, INPUT_PULLDOWN);
+  pinMode(4, INPUT_PULLDOWN);
+  pinMode(5, INPUT_PULLDOWN);
+  pinMode(6, OUTPUT);
+  pinMode(43, OUTPUT);
+  pinMode(44, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
 }
 
 void loop() {
+
   for (int c = 0; c < sizeof cols / sizeof cols[0]; c++) {
     digitalWrite(cols[c], HIGH);
+    delayMicroseconds(5); // Slight delay for signal settling
     for (int r = 0; r < sizeof rows / sizeof rows[0]; r++) {
       int current_state = digitalRead(rows[r]);
       delay(1);
