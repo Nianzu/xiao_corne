@@ -8,16 +8,25 @@
 #include "USBHIDKeyboard.h"
 // Note, must use version 1.12.3, later versions at least up to 1.12.5 are broken!!!!
 #include <Adafruit_NeoPixel.h>
+#include "ESP32_NOW.h"
+#include "WiFi.h"
+// For the MAC2STR and MACSTR macros
+#include <esp_mac.h>
+#include <vector>
 
 #define IS_LEFT
 
 #define PIN 9
 #define NUMPIXELS 21
 
+#define ESPNOW_WIFI_CHANNEL 6
+
 #define NUM_ROWS 5
 #define NUM_COLS 5
 
-// Keyboard keycodes
+#define PAIRING_BROADCAST_DELAY 1000
+
+// Additional keyboard keycodes
 #define ___ 0x00
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
@@ -33,6 +42,97 @@ public:
     this->y = y;
   }
 };
+
+class ESP_NOW_Broadcast_Peer : public ESP_NOW_Peer {
+public:
+  // Constructor of the class using the broadcast address
+  ESP_NOW_Broadcast_Peer(uint8_t channel, wifi_interface_t iface, const uint8_t *lmk)
+    : ESP_NOW_Peer(ESP_NOW.BROADCAST_ADDR, channel, iface, lmk) {}
+
+  // Destructor of the class
+  ~ESP_NOW_Broadcast_Peer() {
+    remove();
+  }
+
+  // Function to properly initialize the ESP-NOW and register the broadcast peer
+  bool begin() {
+    if (!ESP_NOW.begin() || !add()) {
+      log_e("Failed to initialize ESP-NOW or register the broadcast peer");
+      return false;
+    }
+    return true;
+  }
+
+  // Function to send a message to all devices within the network
+  bool send_message(const uint8_t *data, size_t len) {
+    if (!send(data, len)) {
+      log_e("Failed to broadcast message");
+      return false;
+    }
+    return true;
+  }
+};
+
+class ESP_NOW_Peer_Class : public ESP_NOW_Peer {
+public:
+  // Constructor of the class
+  ESP_NOW_Peer_Class(const uint8_t *mac_addr, uint8_t channel, wifi_interface_t iface, const uint8_t *lmk)
+    : ESP_NOW_Peer(mac_addr, channel, iface, lmk) {}
+
+  // Destructor of the class
+  ~ESP_NOW_Peer_Class() {}
+
+  // Function to register the master peer
+  bool add_peer() {
+    if (!add()) {
+      log_e("Failed to register the broadcast peer");
+      return false;
+    }
+    return true;
+  }
+
+  // Function to print the received messages from the master
+  void onReceive(const uint8_t *data, size_t len, bool broadcast) {
+    Serial.printf("Received a message from master " MACSTR " (%s)\n", MAC2STR(addr()), broadcast ? "broadcast" : "unicast");
+    Serial.printf("  Message: %s\n", (char *)data);
+
+      // Make a copy of the data to ensure null-termination
+  char message[33]; // 32 + 1 for null terminator
+  len = len > 32 ? 32 : len;
+  memcpy(message, data, len);
+  message[len] = '\0';
+
+  Serial.printf("  Message: %s\n", message);
+
+  // Parse message: format is 'P<num>' or 'R<num>'
+  if (message[0] == 'P' || message[0] == 'R') {
+    int keycode = atoi(&message[1]); // Convert from string to int
+    if (keycode > 0 && keycode <= 255) { // Basic sanity check
+      if (message[0] == 'P') {
+        Keyboard.press(keycode);
+        Serial.printf("Pressed keycode: %d\n", keycode);
+      } else {
+        Keyboard.release(keycode);
+        Serial.printf("Released keycode: %d\n", keycode);
+      }
+    } else {
+      Serial.println("Invalid keycode");
+    }
+  } else {
+    Serial.println("Unknown message format");
+  }
+  }
+
+  // Function to send a message to a device
+  bool send_message(const uint8_t *data, size_t len) {
+    if (!send(data, len)) {
+      log_e("Failed to broadcast message");
+      return false;
+    }
+    return true;
+  }
+};
+
 
 int last_state[5][5] = {
   { 0, 0, 0, 0, 0 },
@@ -88,20 +188,69 @@ int action_map[4][6] = {
 };
 #endif
 
+// 0: Waiting
+// 1: Sending broadcasts
+// 2: Paired
+int paring_state = 0;
+
+unsigned long last_broadcast_ms = 0;
+
+ESP_NOW_Broadcast_Peer broadcast_peer(ESPNOW_WIFI_CHANNEL, WIFI_IF_STA, NULL);
+std::vector<ESP_NOW_Peer_Class> paired_devices;
+
 void perform_action(Key key, bool down) {
   int sendcode = action_map[key.y][key.x];
   if (sendcode != 0) {
-    if (down) {
-      Keyboard.press(sendcode);
+    if (paring_state == 2) {
+      if (down) {
+        Keyboard.press(sendcode);
 
-      pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(150, 0, 0));
-      pixels.show();
+        char data[32];
+        snprintf(data, sizeof(data), "P%d", sendcode);
+        paired_devices.back().send_message((uint8_t *)data, sizeof(data));
 
+        pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(150, 0, 0));
+        pixels.show();
+
+      } else {
+        Keyboard.release(sendcode);
+
+        char data[32];
+        snprintf(data, sizeof(data), "R%d", sendcode);
+        paired_devices.back().send_message((uint8_t *)data, sizeof(data));
+
+        pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(0, 0, 0));
+        pixels.show();
+      }
     } else {
-      Keyboard.release(sendcode);
-      pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(0, 0, 0));
-      pixels.show();
+      if (down) {
+        if (key.y == 1 && key.x == 1) {
+          paring_state = 1;
+        }
+      }
     }
+  }
+}
+
+void register_new_peer(const esp_now_recv_info_t *info, const uint8_t *data, int len, void *arg) {
+  Serial.println("New peer found");
+  if (paired_devices.size() == 0) {
+
+    ESP_NOW_Peer_Class new_peer(info->src_addr, ESPNOW_WIFI_CHANNEL, WIFI_IF_STA, NULL);
+
+    paired_devices.push_back(new_peer);
+    if (!paired_devices.back().add_peer()) {
+      log_v("Failed to register the new master");
+      return;
+    }
+    char data[32];
+    snprintf(data, sizeof(data), "Unicast reply for pairing");
+    broadcast_peer.send_message((uint8_t *)data, sizeof(data));
+    Serial.println("Sent reply");
+  } else {
+    // The slave will only receive broadcast messages
+    log_v("Received a unicast message from " MACSTR, MAC2STR(info->src_addr));
+    log_v("Igorning the message");
   }
 }
 
@@ -123,6 +272,24 @@ void setup() {
   for (int r = 0; r < NUM_ROWS; r++) {
     pinMode(gpio_rows[r], INPUT_PULLDOWN);
   }
+
+  // Initialize the Wi-Fi module
+  WiFi.mode(WIFI_STA);
+  WiFi.setChannel(ESPNOW_WIFI_CHANNEL);
+  while (!WiFi.STA.started()) {
+    delay(100);
+  }
+
+  // Register the broadcast peer
+  if (!broadcast_peer.begin()) {
+    delay(5000);
+    ESP.restart();
+  }
+
+  // Register the new peer callback
+  ESP_NOW.onNewPeer(register_new_peer, NULL);
+
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -140,6 +307,29 @@ void loop() {
       }
     }
     digitalWrite(gpio_cols[c], LOW);
+  }
+
+  if (paring_state == 0) {
+    pixels.setPixelColor(led_map[1][1], pixels.Color(0, 100, 100));
+    pixels.show();
+  } else if (paring_state == 1) {
+    if (last_broadcast_ms + PAIRING_BROADCAST_DELAY < millis()) {
+      last_broadcast_ms = millis();
+      char data[32];
+      snprintf(data, sizeof(data), "Broadcast for pairing");
+      broadcast_peer.send_message((uint8_t *)data, sizeof(data));
+      Serial.println("Broadcasting");
+    }
+
+    pixels.setPixelColor(led_map[1][1], pixels.Color(100, 100, 100));
+    pixels.show();
+  }
+  if (paring_state != 2) {
+    if (paired_devices.size() > 0) {
+      paring_state = 2;
+      pixels.clear();
+      pixels.show();
+    }
   }
 }
 #endif /* ARDUINO_USB_MODE */
