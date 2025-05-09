@@ -28,10 +28,17 @@
 
 // Additional keyboard keycodes
 #define ___ 0x00
+#define LT0 -1
+#define LT1 -2
+#define LT2 -3
+#define LT3 -4
+#define LT4 -5
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 USBHIDKeyboard Keyboard;
+
+int active_layer = 0;
 
 class Key {
 public:
@@ -93,34 +100,31 @@ public:
 
   // Function to print the received messages from the master
   void onReceive(const uint8_t *data, size_t len, bool broadcast) {
-    Serial.printf("Received a message from master " MACSTR " (%s)\n", MAC2STR(addr()), broadcast ? "broadcast" : "unicast");
-    Serial.printf("  Message: %s\n", (char *)data);
 
-      // Make a copy of the data to ensure null-termination
-  char message[33]; // 32 + 1 for null terminator
-  len = len > 32 ? 32 : len;
-  memcpy(message, data, len);
-  message[len] = '\0';
+    // Make a copy of the data to ensure null-termination
+    char message[33];  // 32 + 1 for null terminator
+    len = len > 32 ? 32 : len;
+    memcpy(message, data, len);
+    message[len] = '\0';
 
-  Serial.printf("  Message: %s\n", message);
+    Serial.printf("  Message: %s\n", message);
 
-  // Parse message: format is 'P<num>' or 'R<num>'
-  if (message[0] == 'P' || message[0] == 'R') {
-    int keycode = atoi(&message[1]); // Convert from string to int
-    if (keycode > 0 && keycode <= 255) { // Basic sanity check
+    // Parse message: format is 'P<num>' or 'R<num>' or 'L<num>'
+    if (message[0] == 'P' || message[0] == 'R' || message[0] == 'L') {
+      int keycode = atoi(&message[1]);  // Convert from string to int
       if (message[0] == 'P') {
         Keyboard.press(keycode);
         Serial.printf("Pressed keycode: %d\n", keycode);
-      } else {
+      } else if (message[0] == 'R') {
         Keyboard.release(keycode);
         Serial.printf("Released keycode: %d\n", keycode);
+
+      } else if (message[0] == 'L') {
+        active_layer = keycode;
       }
     } else {
-      Serial.println("Invalid keycode");
+      Serial.println("Unknown message format");
     }
-  } else {
-    Serial.println("Unknown message format");
-  }
   }
 
   // Function to send a message to a device
@@ -163,13 +167,38 @@ Key key_map[5][5] = {
   { Key(0, 3), Key(-1, -1), Key(-1, -1), Key(-1, -1), Key(-1, -1) },
 };
 
-int action_map[4][6] = {
-  { 't', 'r', 'e', 'w', 'q', ___ },
-  { 'g', 'f', 'd', 's', 'a', KEY_TAB },
-  { 'b', 'v', 'c', 'x', 'z', ___ },
-  { ___, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+int action_map[5][4][6] = {
+  {
+    { 't', 'r', 'e', 'w', 'q', ___ },
+    { 'g', 'f', 'd', 's', 'a', KEY_TAB },
+    { 'b', 'v', 'c', 'x', 'z', ___ },
+    { LT1, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+  },
+  {
+    { ___, '9', '8', '7', ___, ___ },
+    { ___, '6', '5', '4', '0', ___ },
+    { ___, '3', '2', '1', ___, ___ },
+    { LT0, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+  },
+  {
+    { '^', ']', '[', '_', '\"', ___ },
+    { '*', '}', '{', '-', '/', ___ },
+    { '`', '~', '|', '$', '#', ___ },
+    { LT3, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+  },
+  {
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { LT2, ___, ___, ___, ___, ___ },
+  },
+  {
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+  }
 };
-
 // Right maps
 #else
 Key key_map[5][5] = {
@@ -180,11 +209,37 @@ Key key_map[5][5] = {
   { Key(0, 3), Key(-1, -1), Key(-1, -1), Key(-1, -1), Key(-1, -1) },
 };
 
-int action_map[4][6] = {
-  { 'y', 'u', 'i', 'o', 'p', ___ },
-  { 'h', 'j', 'k', 'l', ';', KEY_BACKSPACE },
-  { 'n', 'm', ',', '.', ___, ___ },
-  { ___, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+int action_map[5][4][6] = {
+  {
+    { 'y', 'u', 'i', 'o', 'p', ___ },
+    { 'h', 'j', 'k', 'l', ';', KEY_BACKSPACE },
+    { 'n', 'm', ',', '.', ___, ___ },
+    { LT2, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+  },
+  {
+    { ___, KEY_LEFT_ALT, KEY_TAB, ___, ___, ___ },
+    { KEY_LEFT_GUI, KEY_LEFT_ARROW, KEY_DOWN_ARROW, KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_BACKSPACE },
+    { ___, KEY_HOME, ___, KEY_PRINT_SCREEN, KEY_END, ___ },
+    { LT3, KEY_LEFT_SHIFT+KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+  },
+  {
+    { '!', '<', '>', '=', '&', ___ },
+    { '?', '(', ')', '\'', ':', KEY_BACKSPACE },
+    { '+', '%', '\\', '@', ___, ___ },
+    { LT0, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+  },
+  {
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { LT1, ___, ___, ___, ___, ___ },
+  },
+  {
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+    { ___, ___, ___, ___, ___, ___ },
+  },
 };
 #endif
 
@@ -199,8 +254,8 @@ ESP_NOW_Broadcast_Peer broadcast_peer(ESPNOW_WIFI_CHANNEL, WIFI_IF_STA, NULL);
 std::vector<ESP_NOW_Peer_Class> paired_devices;
 
 void perform_action(Key key, bool down) {
-  int sendcode = action_map[key.y][key.x];
-  if (sendcode != 0) {
+  int sendcode = action_map[active_layer][key.y][key.x];
+  if (sendcode > 0) {
     if (paring_state == 2) {
       if (down) {
         Keyboard.press(sendcode);
@@ -228,6 +283,24 @@ void perform_action(Key key, bool down) {
           paring_state = 1;
         }
       }
+    }
+  } else {
+    if (down) {
+      if (sendcode == -1) {
+        active_layer = 0;
+      } else if (sendcode == -2) {
+        active_layer = 1;
+      } else if (sendcode == -3) {
+        active_layer = 2;
+      } else if (sendcode == -4) {
+        active_layer = 3;
+      } else if (sendcode == -5) {
+        active_layer = 4;
+      }
+
+      char data[32];
+      snprintf(data, sizeof(data), "L%d", active_layer);
+      paired_devices.back().send_message((uint8_t *)data, sizeof(data));
     }
   }
 }
