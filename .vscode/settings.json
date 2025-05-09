@@ -3,6 +3,12 @@
         "__node_handle": "cpp",
         "random": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "memory": "cpp",
+        "memory_resource": "cpp",
+        "shared_mutex": "cpp",
+        "stop_token": "cpp",
+        "semaphore": "cpp",
+        "__mutex_base": "cpp"
     }
 }

@@ -107,23 +107,18 @@ public:
     memcpy(message, data, len);
     message[len] = '\0';
 
-    Serial.printf("  Message: %s\n", message);
-
     // Parse message: format is 'P<num>' or 'R<num>' or 'L<num>'
     if (message[0] == 'P' || message[0] == 'R' || message[0] == 'L') {
       int keycode = atoi(&message[1]);  // Convert from string to int
       if (message[0] == 'P') {
         Keyboard.press(keycode);
-        Serial.printf("Pressed keycode: %d\n", keycode);
       } else if (message[0] == 'R') {
         Keyboard.release(keycode);
-        Serial.printf("Released keycode: %d\n", keycode);
 
       } else if (message[0] == 'L') {
         active_layer = keycode;
+        Keyboard.releaseAll();
       }
-    } else {
-      Serial.println("Unknown message format");
     }
   }
 
@@ -220,7 +215,7 @@ int action_map[5][4][6] = {
     { ___, KEY_LEFT_ALT, KEY_TAB, ___, ___, ___ },
     { KEY_LEFT_GUI, KEY_LEFT_ARROW, KEY_DOWN_ARROW, KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_BACKSPACE },
     { ___, KEY_HOME, ___, KEY_PRINT_SCREEN, KEY_END, ___ },
-    { LT3, KEY_LEFT_SHIFT+KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+    { LT3, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
   },
   {
     { '!', '<', '>', '=', '&', ___ },
@@ -288,14 +283,19 @@ void perform_action(Key key, bool down) {
     if (down) {
       if (sendcode == -1) {
         active_layer = 0;
+        Keyboard.releaseAll();
       } else if (sendcode == -2) {
         active_layer = 1;
+        Keyboard.releaseAll();
       } else if (sendcode == -3) {
         active_layer = 2;
+        Keyboard.releaseAll();
       } else if (sendcode == -4) {
         active_layer = 3;
+        Keyboard.releaseAll();
       } else if (sendcode == -5) {
         active_layer = 4;
+        Keyboard.releaseAll();
       }
 
       char data[32];
@@ -306,7 +306,6 @@ void perform_action(Key key, bool down) {
 }
 
 void register_new_peer(const esp_now_recv_info_t *info, const uint8_t *data, int len, void *arg) {
-  Serial.println("New peer found");
   if (paired_devices.size() == 0) {
 
     ESP_NOW_Peer_Class new_peer(info->src_addr, ESPNOW_WIFI_CHANNEL, WIFI_IF_STA, NULL);
@@ -319,7 +318,6 @@ void register_new_peer(const esp_now_recv_info_t *info, const uint8_t *data, int
     char data[32];
     snprintf(data, sizeof(data), "Unicast reply for pairing");
     broadcast_peer.send_message((uint8_t *)data, sizeof(data));
-    Serial.println("Sent reply");
   } else {
     // The slave will only receive broadcast messages
     log_v("Received a unicast message from " MACSTR, MAC2STR(info->src_addr));
@@ -361,8 +359,6 @@ void setup() {
 
   // Register the new peer callback
   ESP_NOW.onNewPeer(register_new_peer, NULL);
-
-  Serial.begin(9600);
 }
 
 void loop() {
@@ -391,7 +387,6 @@ void loop() {
       char data[32];
       snprintf(data, sizeof(data), "Broadcast for pairing");
       broadcast_peer.send_message((uint8_t *)data, sizeof(data));
-      Serial.println("Broadcasting");
     }
 
     pixels.setPixelColor(led_map[1][1], pixels.Color(100, 100, 100));
