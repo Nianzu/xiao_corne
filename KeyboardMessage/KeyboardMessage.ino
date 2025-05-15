@@ -39,6 +39,7 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 USBHIDKeyboard Keyboard;
 
 int active_layer = 0;
+bool LEDs_updated = false;
 
 class Key {
 public:
@@ -260,7 +261,7 @@ void perform_action(Key key, bool down) {
         paired_devices.back().send_message((uint8_t *)data, sizeof(data));
 
         pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(150, 0, 0));
-        pixels.show();
+        LEDs_updated = true;
 
       } else {
         Keyboard.release(sendcode);
@@ -270,7 +271,7 @@ void perform_action(Key key, bool down) {
         paired_devices.back().send_message((uint8_t *)data, sizeof(data));
 
         pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(0, 0, 0));
-        pixels.show();
+        LEDs_updated = true;
       }
     } else {
       if (down) {
@@ -380,7 +381,7 @@ void loop() {
 
   if (paring_state == 0) {
     pixels.setPixelColor(led_map[1][1], pixels.Color(0, 100, 100));
-    pixels.show();
+    LEDs_updated = true;
   } else if (paring_state == 1) {
     if (last_broadcast_ms + PAIRING_BROADCAST_DELAY < millis()) {
       last_broadcast_ms = millis();
@@ -390,14 +391,18 @@ void loop() {
     }
 
     pixels.setPixelColor(led_map[1][1], pixels.Color(100, 100, 100));
-    pixels.show();
+    LEDs_updated = true;
   }
   if (paring_state != 2) {
     if (paired_devices.size() > 0) {
       paring_state = 2;
       pixels.clear();
-      pixels.show();
+    LEDs_updated = true;
     }
+  }
+  if (LEDs_updated){
+    pixels.show();
+    LEDs_updated = false;
   }
 }
 #endif /* ARDUINO_USB_MODE */
