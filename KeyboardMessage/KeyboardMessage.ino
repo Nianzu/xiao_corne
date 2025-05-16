@@ -5,14 +5,12 @@
 #else
 
 #include "USB.h"
-// Note, must use version 1.12.3, later versions at least up to 1.12.5 are broken!!!!
-#include <Adafruit_NeoPixel.h>
+
 #include "ESP32_NOW.h"
 #include "WiFi.h"
 // For the MAC2STR and MACSTR macros
 #include <esp_mac.h>
 #include <vector>
-
 
 #define IS_LEFT
 
@@ -23,19 +21,24 @@
 #endif
 #include "types.h"
 
-#define PIN 9
-#define NUMPIXELS 21
 #define ESPNOW_WIFI_CHANNEL 6
 #define NUM_ROWS 5
 #define NUM_COLS 5
 #define PAIRING_BROADCAST_DELAY 1000
 
-Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 USBHIDKeyboard Keyboard;
 
 int active_layer = 0;
 bool LEDs_updated = false;
+
+
+int led_map[4][6] = {
+  { 0, 1, 2, 3, 4, 5 },
+  { 15, 14, 13, 10, 9, 6 },
+  { 16, 17, 12, 11, 8, 7 },
+  { 20, 19, 18, -1, -1, -1 },
+};
 
 
 class ESP_NOW_Broadcast_Peer : public ESP_NOW_Peer {
@@ -106,6 +109,17 @@ public:
       } else if (message[0] == 'L') {
         active_layer = keycode;
         Keyboard.releaseAll();
+
+        pixels.clear();
+        for (int i = 0; i < 4; i++) {
+          for (int j = 0; j < 6; j++) {
+
+            if (led_map[i][j] != -1) {
+              pixels.setPixelColor(led_map[i][j], led_layer_map[active_layer][i][j]);
+            }
+          }
+        }
+        LEDs_updated = true;
       }
     }
   }
@@ -127,13 +141,6 @@ int last_state[5][5] = {
   { 0, 0, 0, 0, 0 },
   { 0, 0, 0, 0, 0 },
   { 0, 0, 0, 0, 0 },
-};
-
-int led_map[4][6] = {
-  { 0, 1, 2, 3, 4, 5 },
-  { 15, 14, 13, 10, 9, 6 },
-  { 16, 17, 12, 11, 8, 7 },
-  { 20, 19, 18, 0, 0, 0 },
 };
 
 // GPIO pins used for the matrix rows and columns
@@ -171,6 +178,15 @@ void handle_layer(int layer) {
     snprintf(data, sizeof(data), "L%d", active_layer);
     paired_devices.back().send_message((uint8_t *)data, sizeof(data));
   }
+  pixels.clear();
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 6; j++) {
+      if (led_map[i][j] != -1) {
+        pixels.setPixelColor(led_map[i][j], led_layer_map[active_layer][i][j]);
+      }
+    }
+  }
+  LEDs_updated = true;
 }
 
 void handle_macro(int macro) {
@@ -199,7 +215,7 @@ void perform_action(Key key, bool down) {
     }
   }
 
-  pixels.setPixelColor(led_map[key.y][key.x], down ? pixels.Color(150, 0, 0) : pixels.Color(0, 0, 0));
+  pixels.setPixelColor(led_map[key.y][key.x], down ? red : black);
   LEDs_updated = true;
 }
 
@@ -277,7 +293,7 @@ void loop() {
   }
 
   if (pairing_state == 0) {
-    pixels.setPixelColor(led_map[1][1], pixels.Color(0, 100, 100));
+    pixels.setPixelColor(led_map[1][1], teal);
     LEDs_updated = true;
   } else if (pairing_state == 1) {
     if (last_broadcast_ms + PAIRING_BROADCAST_DELAY < millis()) {
@@ -287,7 +303,7 @@ void loop() {
       broadcast_peer.send_message((uint8_t *)data, sizeof(data));
     }
 
-    pixels.setPixelColor(led_map[1][1], pixels.Color(100, 100, 100));
+    pixels.setPixelColor(led_map[1][1], white);
     LEDs_updated = true;
   }
   if (pairing_state != 2) {

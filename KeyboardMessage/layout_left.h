@@ -1,5 +1,18 @@
 #include "types.h"
 #include "USBHIDKeyboard.h"
+// Note, must use version 1.12.3, later versions at least up to 1.12.5 are broken!!!!
+#include <Adafruit_NeoPixel.h>
+
+
+#define PIN 9
+#define NUMPIXELS 21
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+const uint32_t magenta = pixels.Color(150, 0, 150);
+const uint32_t red = pixels.Color(150, 0, 0);
+const uint32_t white = pixels.Color(150, 150, 150);
+const uint32_t teal = pixels.Color(0, 150, 150);
+const uint32_t black = pixels.Color(0, 0, 0);
 
 const Key key_map[5][5] = {
   { Key(0, 0), Key(1, 0), Key(2, 0), Key(3, 0), Key(4, 0) },
@@ -39,5 +52,38 @@ const Action action_map[5][4][6] = {
     { ____, ____, ____, ____, ____, ____ },
     { ____, ____, ____, ____, ____, ____ },
     { ____, ____, ____, ____, ____, ____ },
+  }
+};
+
+const uint32_t led_layer_map[5][4][6] = {
+  {
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+  },
+  {
+    { white, white, white, white, white, white },
+    { white, white, white, white, white, white },
+    { white, white, white, white, white, white },
+    { white, white, white, white, white, white },
+  },
+  {
+    { black, white, black, white, black, white },
+    { white, black, white, black, white, black },
+    { black, white, black, white, black, white },
+    { white, black, white, black, white, black },
+  },
+  {
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+  },
+  {
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
+    { black, black, black, black, black, black },
   }
 };
