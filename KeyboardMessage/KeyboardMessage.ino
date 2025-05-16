@@ -13,15 +13,15 @@
 #include <esp_mac.h>
 #include <vector>
 
+
+#define IS_LEFT
+
 #ifdef IS_LEFT
 #include "layout_left.h"
 #else
 #include "layout_right.h"
 #endif
 #include "types.h"
-
-
-#define IS_LEFT
 
 #define PIN 9
 #define NUMPIXELS 21
