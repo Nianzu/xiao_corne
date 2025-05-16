@@ -13,7 +13,7 @@
 // For the MAC2STR and MACSTR macros
 #include <esp_mac.h>
 #include <vector>
-
+f
 #define IS_LEFT
 
 #define PIN 9
@@ -50,6 +50,28 @@ public:
     this->y = y;
   }
 };
+
+enum ActionType {
+  ACTION_NONE,
+  ACTION_KEYCODE,
+  ACTION_LAYER,
+  ACTION_MACRO
+};
+
+struct Action {
+  ActionType type;
+  int value;
+
+  constexpr Action()
+    : type(ACTION_NONE), value(0) {}
+  constexpr Action(ActionType type, int value)
+    : type(type), value(value) {}
+};
+
+#define ____ Action()
+#define KEY(k) Action(ACTION_KEYCODE, k)
+#define LAY(l) Action(ACTION_LAYER, l)
+#define MACRO(m) Action(ACTION_MACRO, m)
 
 class ESP_NOW_Broadcast_Peer : public ESP_NOW_Peer {
 public:
@@ -163,38 +185,39 @@ Key key_map[5][5] = {
   { Key(0, 3), Key(-1, -1), Key(-1, -1), Key(-1, -1), Key(-1, -1) },
 };
 
-int action_map[5][4][6] = {
+Action action_map[5][4][6] = {
   {
-    { 't', 'r', 'e', 'w', 'q', ___ },
-    { 'g', 'f', 'd', 's', 'a', KEY_TAB },
-    { 'b', 'v', 'c', 'x', 'z', ___ },
-    { LT1, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+    { KEY('t'), KEY('r'), KEY('e'), KEY('w'), KEY('q'), ____ },
+    { KEY('g'), KEY('f'), KEY('d'), KEY('s'), KEY('a'), KEY(KEY_TAB) },
+    { KEY('b'), KEY('v'), KEY('c'), KEY('x'), KEY('z'), ____ },
+    { LAY(1), KEY(KEY_SPACE), KEY(KEY_LEFT_CTRL), ____, ____, ____ },
   },
   {
-    { ___, '9', '8', '7', ___, ___ },
-    { ___, '6', '5', '4', '0', ___ },
-    { ___, '3', '2', '1', ___, ___ },
-    { LT0, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+    { ____, KEY('9'), KEY('8'), KEY('7'), ____, ____ },
+    { ____, KEY('6'), KEY('5'), KEY('4'), KEY('0'), ____ },
+    { ____, KEY('3'), KEY('2'), KEY('1'), ____, ____ },
+    { LAY(0), KEY(KEY_SPACE), KEY(KEY_LEFT_CTRL), ____, ____, ____ },
   },
   {
-    { '^', ']', '[', '_', '\"', ___ },
-    { '*', '}', '{', '-', '/', ___ },
-    { '`', '~', '|', '$', '#', ___ },
-    { LT3, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+    { KEY('^'), KEY(']'), KEY('['), KEY('_'), KEY('\"'), ____ },
+    { KEY('*'), KEY('}'), KEY('{'), KEY('-'), KEY('/'), ____ },
+    { KEY('`'), KEY('~'), KEY('|'), KEY('$'), KEY('#'), ____ },
+    { LAY(3), KEY(KEY_SPACE), KEY(KEY_LEFT_CTRL), ____, ____, ____ },
   },
   {
-    { 'r', 'e', 'w', 'q', ___, ___ },
-    { 'f', 'd', 's', 'a', KEY_LEFT_SHIFT, KEY_TAB },
-    { 'v', 'c', 'x', 'z', ___, ___ },
-    { LT2, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
+    { KEY('r'), KEY('e'), KEY('w'), KEY('q'), ____, ____ },
+    { KEY('f'), KEY('d'), KEY('s'), KEY('a'), KEY(KEY_LEFT_SHIFT), KEY(KEY_TAB) },
+    { KEY('v'), KEY('c'), KEY('x'), KEY('z'), ____, ____ },
+    { LAY(2), KEY(KEY_SPACE), KEY(KEY_LEFT_CTRL), ____, ____, ____ },
   },
   {
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
   }
 };
+
 // Right maps
 #else
 Key key_map[5][5] = {
@@ -205,38 +228,39 @@ Key key_map[5][5] = {
   { Key(0, 3), Key(-1, -1), Key(-1, -1), Key(-1, -1), Key(-1, -1) },
 };
 
-int action_map[5][4][6] = {
+Action action_map[5][4][6] = {
   {
-    { 'y', 'u', 'i', 'o', 'p', ___ },
-    { 'h', 'j', 'k', 'l', ';', KEY_BACKSPACE },
-    { 'n', 'm', ',', '.', ___, ___ },
-    { LT2, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+    { KEY('y'), KEY('u'), KEY('i'), KEY('o'), KEY('p'), ____ },
+    { KEY('h'), KEY('j'), KEY('k'), KEY('l'), KEY(';'), KEY(KEY_BACKSPACE) },
+    { KEY('n'), KEY('m'), KEY(','), KEY('.'), ____, ____ },
+    { LAY(2), KEY(KEY_KP_ENTER), KEY(KEY_LEFT_SHIFT), ____, ____, ____ },
   },
   {
-    { ___, KEY_LEFT_ALT, KEY_TAB, ___, ___, ___ },
-    { KEY_LEFT_GUI, KEY_LEFT_ARROW, KEY_DOWN_ARROW, KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_BACKSPACE },
-    { ___, KEY_HOME, ___, KEY_PRINT_SCREEN, KEY_END, ___ },
-    { LT3, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+    { ____, KEY(KEY_LEFT_ALT), KEY(KEY_TAB), ____, ____, ____ },
+    { KEY(KEY_LEFT_GUI), KEY(KEY_LEFT_ARROW), KEY(KEY_DOWN_ARROW), KEY(KEY_UP_ARROW), KEY(KEY_RIGHT_ARROW), KEY(KEY_BACKSPACE) },
+    { ____, KEY(KEY_HOME), ____, KEY(KEY_PRINT_SCREEN), KEY(KEY_END), ____ },
+    { LAY(3), KEY(KEY_KP_ENTER), KEY(KEY_LEFT_SHIFT), ____, ____, ____ },
   },
   {
-    { '!', '<', '>', '=', '&', ___ },
-    { '?', '(', ')', '\'', ':', KEY_BACKSPACE },
-    { '+', '%', '\\', '@', ___, ___ },
-    { LT0, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
+    { KEY('!'), KEY('<'), KEY('>'), KEY('='), KEY('&'), ____ },
+    { KEY('?'), KEY('('), KEY(')'), KEY('\''), KEY(':'), KEY(KEY_BACKSPACE) },
+    { KEY('+'), KEY('%'), KEY('\\'), KEY('@'), ____, ____ },
+    { LAY(0), KEY(KEY_KP_ENTER), KEY(KEY_LEFT_SHIFT), ____, ____, ____ },
   },
   {
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { LT1, ___, ___, ___, ___, ___ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
+    { LAY(1), ____, ____, ____, ____, ____ },
   },
   {
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
+    { ____, ____, ____, ____, ____, ____ },
   },
 };
+
 #endif
 
 // 0: Waiting
@@ -249,61 +273,57 @@ unsigned long last_broadcast_ms = 0;
 ESP_NOW_Broadcast_Peer broadcast_peer(ESPNOW_WIFI_CHANNEL, WIFI_IF_STA, NULL);
 std::vector<ESP_NOW_Peer_Class> paired_devices;
 
-void perform_action(Key key, bool down) {
-  int sendcode = action_map[active_layer][key.y][key.x];
-  if (sendcode > 0) {
-    if (paring_state == 2) {
-      if (down) {
-        Keyboard.press(sendcode);
-
-        char data[32];
-        snprintf(data, sizeof(data), "P%d", sendcode);
-        paired_devices.back().send_message((uint8_t *)data, sizeof(data));
-
-        pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(150, 0, 0));
-        LEDs_updated = true;
-
-      } else {
-        Keyboard.release(sendcode);
-
-        char data[32];
-        snprintf(data, sizeof(data), "R%d", sendcode);
-        paired_devices.back().send_message((uint8_t *)data, sizeof(data));
-
-        pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(0, 0, 0));
-        LEDs_updated = true;
-      }
-    } else {
-      if (down) {
-        if (key.y == 1 && key.x == 1) {
-          paring_state = 1;
-        }
-      }
-    }
+void handle_keycode(int keycode, bool down) {
+  if (down) {
+    Keyboard.press(keycode);
   } else {
-    if (down) {
-      if (sendcode == -1) {
-        active_layer = 0;
-        Keyboard.releaseAll();
-      } else if (sendcode == -2) {
-        active_layer = 1;
-        Keyboard.releaseAll();
-      } else if (sendcode == -3) {
-        active_layer = 2;
-        Keyboard.releaseAll();
-      } else if (sendcode == -4) {
-        active_layer = 3;
-        Keyboard.releaseAll();
-      } else if (sendcode == -5) {
-        active_layer = 4;
-        Keyboard.releaseAll();
-      }
+    Keyboard.release(keycode);
+  }
+  if (paring_state == 2) {
+    char data[32];
+    snprintf(data, sizeof(data), "%c%d", down ? 'P' : 'R', keycode);
+    paired_devices.back().send_message((uint8_t *)data, sizeof(data));
+  }
+}
 
-      char data[32];
-      snprintf(data, sizeof(data), "L%d", active_layer);
-      paired_devices.back().send_message((uint8_t *)data, sizeof(data));
+void handle_layer(int layer) {
+  active_layer = layer;
+  Keyboard.releaseAll();
+  char data[32];
+  if (paring_state == 2) {
+    snprintf(data, sizeof(data), "L%d", active_layer);
+    paired_devices.back().send_message((uint8_t *)data, sizeof(data));
+  }
+}
+
+void handle_macro(int macro) {
+  // future work
+}
+
+void perform_action(Key key, bool down) {
+  Action action = action_map[active_layer][key.y][key.x];
+
+  switch (action.type) {
+    case ACTION_NONE:
+      break;
+    case ACTION_KEYCODE:
+      handle_keycode(action.value, down);
+      break;
+    case ACTION_LAYER:
+      if (down) handle_layer(action.value);
+      break;
+    case ACTION_MACRO:
+      if (down) handle_macro(action.value);
+      break;
+  }
+  if (down && paring_state != 2) {
+    if (key.y == 1 && key.x == 1) {
+      paring_state = 1;
     }
   }
+
+  pixels.setPixelColor(led_map[key.y][key.x], down ? pixels.Color(150, 0, 0) : pixels.Color(0, 0, 0));
+  LEDs_updated = true;
 }
 
 void register_new_peer(const esp_now_recv_info_t *info, const uint8_t *data, int len, void *arg) {
@@ -397,10 +417,10 @@ void loop() {
     if (paired_devices.size() > 0) {
       paring_state = 2;
       pixels.clear();
-    LEDs_updated = true;
+      LEDs_updated = true;
     }
   }
-  if (LEDs_updated){
+  if (LEDs_updated) {
     pixels.show();
     LEDs_updated = false;
   }
