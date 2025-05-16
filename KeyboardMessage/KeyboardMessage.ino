@@ -215,7 +215,7 @@ void perform_action(Key key, bool down) {
     }
   }
 
-  pixels.setPixelColor(led_map[key.y][key.x], down ? red : black);
+  pixels.setPixelColor(led_map[key.y][key.x], down ? red : led_layer_map[active_layer][key.y][key.x]);
   LEDs_updated = true;
 }
 
