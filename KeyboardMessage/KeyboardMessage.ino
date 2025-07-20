@@ -5,9 +5,7 @@
 #else
 
 #include "USB.h"
-#include "USBHIDKeyboard.h"
-// Note, must use version 1.12.3, later versions at least up to 1.12.5 are broken!!!!
-#include <Adafruit_NeoPixel.h>
+
 #include "ESP32_NOW.h"
 #include "WiFi.h"
 // For the MAC2STR and MACSTR macros
@@ -16,39 +14,32 @@
 
 #define IS_LEFT
 
-#define PIN 9
-#define NUMPIXELS 21
+#ifdef IS_LEFT
+#include "layout_left.h"
+#else
+#include "layout_right.h"
+#endif
+#include "types.h"
 
 #define ESPNOW_WIFI_CHANNEL 6
-
 #define NUM_ROWS 5
 #define NUM_COLS 5
-
 #define PAIRING_BROADCAST_DELAY 1000
 
-// Additional keyboard keycodes
-#define ___ 0x00
-#define LT0 -1
-#define LT1 -2
-#define LT2 -3
-#define LT3 -4
-#define LT4 -5
-
-Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 USBHIDKeyboard Keyboard;
 
 int active_layer = 0;
+bool LEDs_updated = false;
 
-class Key {
-public:
-  int x;
-  int y;
-  Key(int x, int y) {
-    this->x = x;
-    this->y = y;
-  }
+
+int led_map[4][6] = {
+  { 0, 1, 2, 3, 4, 5 },
+  { 15, 14, 13, 10, 9, 6 },
+  { 16, 17, 12, 11, 8, 7 },
+  { 20, 19, 18, -1, -1, -1 },
 };
+
 
 class ESP_NOW_Broadcast_Peer : public ESP_NOW_Peer {
 public:
@@ -118,6 +109,17 @@ public:
       } else if (message[0] == 'L') {
         active_layer = keycode;
         Keyboard.releaseAll();
+
+        pixels.clear();
+        for (int i = 0; i < 4; i++) {
+          for (int j = 0; j < 6; j++) {
+
+            if (led_map[i][j] != -1) {
+              pixels.setPixelColor(led_map[i][j], led_layer_map[active_layer][i][j]);
+            }
+          }
+        }
+        LEDs_updated = true;
       }
     }
   }
@@ -141,168 +143,80 @@ int last_state[5][5] = {
   { 0, 0, 0, 0, 0 },
 };
 
-int led_map[4][6] = {
-  { 0, 1, 2, 3, 4, 5 },
-  { 15, 14, 13, 10, 9, 6 },
-  { 16, 17, 12, 11, 8, 7 },
-  { 20, 19, 18, 0, 0, 0 },
-};
-
 // GPIO pins used for the matrix rows and columns
 int gpio_cols[NUM_COLS] = { 6, 43, 44, 7, 8 };
 int gpio_rows[NUM_ROWS] = { 1, 2, 3, 4, 5 };
 
-// Left maps
-#ifdef IS_LEFT
-Key key_map[5][5] = {
-  { Key(0, 0), Key(1, 0), Key(2, 0), Key(3, 0), Key(4, 0) },
-  { Key(5, 0), Key(4, 1), Key(4, 2), Key(5, 2), Key(5, 1) },
-  { Key(2, 2), Key(1, 1), Key(3, 2), Key(3, 1), Key(2, 1) },
-  { Key(1, 2), Key(2, 3), Key(1, 3), Key(0, 1), Key(0, 2) },
-  { Key(0, 3), Key(-1, -1), Key(-1, -1), Key(-1, -1), Key(-1, -1) },
-};
-
-int action_map[5][4][6] = {
-  {
-    { 't', 'r', 'e', 'w', 'q', ___ },
-    { 'g', 'f', 'd', 's', 'a', KEY_TAB },
-    { 'b', 'v', 'c', 'x', 'z', ___ },
-    { LT1, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
-  },
-  {
-    { ___, '9', '8', '7', ___, ___ },
-    { ___, '6', '5', '4', '0', ___ },
-    { ___, '3', '2', '1', ___, ___ },
-    { LT0, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
-  },
-  {
-    { '^', ']', '[', '_', '\"', ___ },
-    { '*', '}', '{', '-', '/', ___ },
-    { '`', '~', '|', '$', '#', ___ },
-    { LT3, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
-  },
-  {
-    { 'r', 'e', 'w', 'q', ___, ___ },
-    { 'f', 'd', 's', 'a', KEY_LEFT_SHIFT, KEY_TAB },
-    { 'v', 'c', 'x', 'z', ___, ___ },
-    { LT2, KEY_SPACE, KEY_LEFT_CTRL, ___, ___, ___ },
-  },
-  {
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-  }
-};
-// Right maps
-#else
-Key key_map[5][5] = {
-  { Key(5, 2), Key(5, 1), Key(4, 0), Key(4, 1), Key(5, 0) },
-  { Key(2, 0), Key(1, 0), Key(0, 0), Key(3, 0), Key(3, 1) },
-  { Key(3, 2), Key(2, 3), Key(2, 2), Key(1, 3), Key(4, 2) },
-  { Key(2, 1), Key(0, 1), Key(0, 2), Key(1, 1), Key(1, 2) },
-  { Key(0, 3), Key(-1, -1), Key(-1, -1), Key(-1, -1), Key(-1, -1) },
-};
-
-int action_map[5][4][6] = {
-  {
-    { 'y', 'u', 'i', 'o', 'p', ___ },
-    { 'h', 'j', 'k', 'l', ';', KEY_BACKSPACE },
-    { 'n', 'm', ',', '.', ___, ___ },
-    { LT2, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
-  },
-  {
-    { ___, KEY_LEFT_ALT, KEY_TAB, ___, ___, ___ },
-    { KEY_LEFT_GUI, KEY_LEFT_ARROW, KEY_DOWN_ARROW, KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_BACKSPACE },
-    { ___, KEY_HOME, ___, KEY_PRINT_SCREEN, KEY_END, ___ },
-    { LT3, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
-  },
-  {
-    { '!', '<', '>', '=', '&', ___ },
-    { '?', '(', ')', '\'', ':', KEY_BACKSPACE },
-    { '+', '%', '\\', '@', ___, ___ },
-    { LT0, KEY_KP_ENTER, KEY_LEFT_SHIFT, ___, ___, ___ },
-  },
-  {
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { LT1, ___, ___, ___, ___, ___ },
-  },
-  {
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-  },
-};
-#endif
-
 // 0: Waiting
 // 1: Sending broadcasts
 // 2: Paired
-int paring_state = 0;
+int pairing_state = 0;
 
 unsigned long last_broadcast_ms = 0;
 
 ESP_NOW_Broadcast_Peer broadcast_peer(ESPNOW_WIFI_CHANNEL, WIFI_IF_STA, NULL);
 std::vector<ESP_NOW_Peer_Class> paired_devices;
 
-void perform_action(Key key, bool down) {
-  int sendcode = action_map[active_layer][key.y][key.x];
-  if (sendcode > 0) {
-    if (paring_state == 2) {
-      if (down) {
-        Keyboard.press(sendcode);
-
-        char data[32];
-        snprintf(data, sizeof(data), "P%d", sendcode);
-        paired_devices.back().send_message((uint8_t *)data, sizeof(data));
-
-        pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(150, 0, 0));
-        pixels.show();
-
-      } else {
-        Keyboard.release(sendcode);
-
-        char data[32];
-        snprintf(data, sizeof(data), "R%d", sendcode);
-        paired_devices.back().send_message((uint8_t *)data, sizeof(data));
-
-        pixels.setPixelColor(led_map[key.y][key.x], pixels.Color(0, 0, 0));
-        pixels.show();
-      }
-    } else {
-      if (down) {
-        if (key.y == 1 && key.x == 1) {
-          paring_state = 1;
-        }
-      }
-    }
+void handle_keycode(int keycode, bool down) {
+  if (down) {
+    Keyboard.press(keycode);
   } else {
-    if (down) {
-      if (sendcode == -1) {
-        active_layer = 0;
-        Keyboard.releaseAll();
-      } else if (sendcode == -2) {
-        active_layer = 1;
-        Keyboard.releaseAll();
-      } else if (sendcode == -3) {
-        active_layer = 2;
-        Keyboard.releaseAll();
-      } else if (sendcode == -4) {
-        active_layer = 3;
-        Keyboard.releaseAll();
-      } else if (sendcode == -5) {
-        active_layer = 4;
-        Keyboard.releaseAll();
-      }
+    Keyboard.release(keycode);
+  }
+  if (pairing_state == 2) {
+    char data[32];
+    snprintf(data, sizeof(data), "%c%d", down ? 'P' : 'R', keycode);
+    paired_devices.back().send_message((uint8_t *)data, sizeof(data));
+  }
+}
 
-      char data[32];
-      snprintf(data, sizeof(data), "L%d", active_layer);
-      paired_devices.back().send_message((uint8_t *)data, sizeof(data));
+void handle_layer(int layer) {
+  active_layer = layer;
+  Keyboard.releaseAll();
+  char data[32];
+  if (pairing_state == 2) {
+    snprintf(data, sizeof(data), "L%d", active_layer);
+    paired_devices.back().send_message((uint8_t *)data, sizeof(data));
+  }
+  pixels.clear();
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 6; j++) {
+      if (led_map[i][j] != -1) {
+        pixels.setPixelColor(led_map[i][j], led_layer_map[active_layer][i][j]);
+      }
     }
   }
+  LEDs_updated = true;
+}
+
+void handle_macro(int macro) {
+  // future work
+}
+
+void perform_action(Key key, bool down) {
+  Action action = action_map[active_layer][key.y][key.x];
+
+  switch (action.type) {
+    case ACTION_NONE:
+      break;
+    case ACTION_KEYCODE:
+      handle_keycode(action.value, down);
+      break;
+    case ACTION_LAYER:
+      if (down) handle_layer(action.value);
+      break;
+    case ACTION_MACRO:
+      if (down) handle_macro(action.value);
+      break;
+  }
+  if (down && pairing_state != 2) {
+    if (key.y == 1 && key.x == 1) {
+      pairing_state = 1;
+    }
+  }
+
+  pixels.setPixelColor(led_map[key.y][key.x], down ? red : led_layer_map[active_layer][key.y][key.x]);
+  LEDs_updated = true;
 }
 
 void register_new_peer(const esp_now_recv_info_t *info, const uint8_t *data, int len, void *arg) {
@@ -378,10 +292,10 @@ void loop() {
     digitalWrite(gpio_cols[c], LOW);
   }
 
-  if (paring_state == 0) {
-    pixels.setPixelColor(led_map[1][1], pixels.Color(0, 100, 100));
-    pixels.show();
-  } else if (paring_state == 1) {
+  if (pairing_state == 0) {
+    pixels.setPixelColor(led_map[1][1], teal);
+    LEDs_updated = true;
+  } else if (pairing_state == 1) {
     if (last_broadcast_ms + PAIRING_BROADCAST_DELAY < millis()) {
       last_broadcast_ms = millis();
       char data[32];
@@ -389,15 +303,19 @@ void loop() {
       broadcast_peer.send_message((uint8_t *)data, sizeof(data));
     }
 
-    pixels.setPixelColor(led_map[1][1], pixels.Color(100, 100, 100));
-    pixels.show();
+    pixels.setPixelColor(led_map[1][1], white);
+    LEDs_updated = true;
   }
-  if (paring_state != 2) {
+  if (pairing_state != 2) {
     if (paired_devices.size() > 0) {
-      paring_state = 2;
+      pairing_state = 2;
       pixels.clear();
-      pixels.show();
+      LEDs_updated = true;
     }
+  }
+  if (LEDs_updated) {
+    pixels.show();
+    LEDs_updated = false;
   }
 }
 #endif /* ARDUINO_USB_MODE */
