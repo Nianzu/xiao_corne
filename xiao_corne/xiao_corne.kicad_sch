@@ -3753,6 +3753,17 @@
 		)
 		(uuid "a1979e8c-bf10-4a21-8163-31d5884f290c")
 	)
+	(text "Done (v0.3 - v0.4):\nFixed issue with battery voltage monitor circuit.\nFound power issue: wrong voltage converter had been ordered"
+		(exclude_from_sim no)
+		(at 201.422 226.822 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ecc90232-aa55-4736-8d37-c45d939ef9d0")
+	)
 	(junction
 		(at 527.05 109.22)
 		(diameter 0)
@@ -4246,6 +4257,12 @@
 		(uuid "6fc4df95-8024-410e-bfcd-aa50e37ebc92")
 	)
 	(junction
+		(at 321.31 172.72)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "70cf6264-01b5-4e26-a39f-f464d276fe7b")
+	)
+	(junction
 		(at 408.94 148.59)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4396,6 +4413,12 @@
 		(uuid "9b5505e9-3f6a-41fe-a6e7-1a4e2e484c76")
 	)
 	(junction
+		(at 21.59 168.91)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9cb4d0e8-ebb8-4d52-a59f-eec8f9d76aec")
+	)
+	(junction
 		(at 213.36 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4432,12 +4455,6 @@
 		(uuid "a43446e2-774e-48df-b569-2a74b6085481")
 	)
 	(junction
-		(at 21.59 168.91)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a4364efe-ca0f-4cd3-90b1-818015266d9f")
-	)
-	(junction
 		(at 44.45 27.94)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4448,12 +4465,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a5899035-ca56-44d3-a342-b8102ffef697")
-	)
-	(junction
-		(at 321.31 172.72)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "aa6d997a-21a3-4843-b941-7340c34f40c9")
 	)
 	(junction
 		(at 228.6 39.37)
@@ -5224,6 +5235,16 @@
 			(type default)
 		)
 		(uuid "0e8ce926-161b-48ba-a060-2cad303d2e93")
+	)
+	(wire
+		(pts
+			(xy 321.31 165.1) (xy 321.31 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0ebb0fd5-f053-47f0-8476-cbe5afa1e101")
 	)
 	(wire
 		(pts
@@ -7744,6 +7765,16 @@
 			(type default)
 		)
 		(uuid "e0df45cd-b840-454d-a324-9d812bd263b3")
+	)
+	(wire
+		(pts
+			(xy 21.59 161.29) (xy 21.59 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e28e59d3-15cd-40db-a7eb-0ca95bf3e8e5")
 	)
 	(wire
 		(pts
@@ -14846,6 +14877,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 13.97 168.91 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4b2a7c18-dcb3-43ca-ac40-28861365f71b")
+		(property "Reference" "#PWR049"
+			(at 7.62 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND L"
+			(at 10.16 168.9099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 13.97 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 13.97 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 13.97 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e6c47e3b-8b40-4428-b009-38ab1268a39a")
+		)
+		(instances
+			(project "xiao_corne"
+				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
+					(reference "#PWR049")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "ScottoKeebs:LED_SK6812MINI")
 		(at 527.05 74.93 0)
 		(unit 1)
@@ -16295,7 +16393,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 21.59 165.1 180)
+		(at 17.78 168.91 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16303,7 +16401,7 @@
 		(dnp no)
 		(uuid "60676578-dd9e-4d7a-90e1-3d41e3cc3d6a")
 		(property "Reference" "R1"
-			(at 19.812 166.3122 0)
+			(at 18.9922 170.688 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16312,7 +16410,7 @@
 			)
 		)
 		(property "Value" "100k"
-			(at 19.812 163.8879 0)
+			(at 16.5679 170.688 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16321,7 +16419,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 23.368 165.1 90)
+			(at 17.78 167.132 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16330,7 +16428,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 21.59 165.1 0)
+			(at 17.78 168.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16339,7 +16437,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 21.59 165.1 0)
+			(at 17.78 168.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16599,6 +16697,73 @@
 			(project "xiao_corne"
 				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
 					(reference "D34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 313.69 172.72 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "657075ed-17fe-49eb-bd0e-eec1dc5ba681")
+		(property "Reference" "#PWR050"
+			(at 307.34 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 309.88 172.7199 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 313.69 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 313.69 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 313.69 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dcfbf18b-db07-403c-96e2-0cd75293881b")
+		)
+		(instances
+			(project "xiao_corne"
+				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -23775,7 +23940,7 @@
 			)
 		)
 		(property "Value" "Conn_01x04_Socket"
-			(at 312.674 174.244 90)
+			(at 299.72 169.418 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24257,7 +24422,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 321.31 168.91 180)
+		(at 317.5 172.72 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -24265,7 +24430,7 @@
 		(dnp no)
 		(uuid "db7dc444-9241-4e44-821c-bd4aa0c29aa0")
 		(property "Reference" "R2"
-			(at 319.532 170.1222 0)
+			(at 318.7122 174.498 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24274,7 +24439,7 @@
 			)
 		)
 		(property "Value" "100k"
-			(at 319.532 167.6979 0)
+			(at 316.2879 174.498 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24283,7 +24448,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 323.088 168.91 90)
+			(at 317.5 170.942 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24292,7 +24457,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 321.31 168.91 0)
+			(at 317.5 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24301,7 +24466,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 321.31 168.91 0)
+			(at 317.5 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
