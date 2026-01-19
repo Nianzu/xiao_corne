@@ -24,19 +24,19 @@ const Key key_map[5][5] = {
 
 const Action action_map[5][4][6] = {
   {
-    { KEY('t'), KEY('r'), KEY('e'), KEY('w'), KEY('q'), ____ },
+    { KEY('t'), KEY('r'), KEY('e'), KEY('w'), KEY('q'), KEY(KEY_ESC) },
     { KEY('g'), KEY('f'), KEY('d'), KEY('s'), KEY('a'), KEY(KEY_TAB) },
     { KEY('b'), KEY('v'), KEY('c'), KEY('x'), KEY('z'), ____ },
     { LAY(1), KEY(KEY_SPACE), KEY(KEY_LEFT_CTRL), ____, ____, ____ },
   },
   {
-    { ____, KEY('9'), KEY('8'), KEY('7'), ____, ____ },
-    { ____, KEY('6'), KEY('5'), KEY('4'), KEY('0'), ____ },
-    { ____, KEY('3'), KEY('2'), KEY('1'), ____, ____ },
+    { ____, KEY('9'), KEY('8'), KEY('7'), ____, KEY(KEY_ESC) },
+    { KEY(KEY_KP_ENTER), KEY('6'), KEY('5'), KEY('4'), KEY('0'), KEY(KEY_TAB) },
+    { KEY('.') , KEY('3'), KEY('2'), KEY('1'), ____, ____ },
     { LAY(0), KEY(KEY_SPACE), KEY(KEY_LEFT_CTRL), ____, ____, ____ },
   },
   {
-    { KEY('^'), KEY(']'), KEY('['), KEY('_'), KEY('\"'), ____ },
+    { KEY('^'), KEY(']'), KEY('['), KEY('_'), KEY('\"'), KEY(KEY_ESC) },
     { KEY('*'), KEY('}'), KEY('{'), KEY('-'), KEY('/'), ____ },
     { KEY('`'), KEY('~'), KEY('|'), KEY('$'), KEY('#'), ____ },
     { LAY(3), KEY(KEY_SPACE), KEY(KEY_LEFT_CTRL), ____, ____, ____ },

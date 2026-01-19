@@ -53183,7 +53183,7 @@
 			(uuid "c11c3677-2e1e-4dee-b5b7-7a42fc8302d3")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -53444,7 +53444,7 @@
 			(uuid "dc3ae746-f8cb-4333-9fdb-8c3889ff24ba")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -54905,7 +54905,7 @@
 			(uuid "17e643ee-a516-4f5a-97de-e31c1fd20624")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -55166,7 +55166,7 @@
 			(uuid "eefc5967-1155-4b5b-85bd-bc6b07c20236")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -55784,7 +55784,7 @@
 			(uuid "d2d98368-03d2-4901-8aad-6d9c2873c806")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -56045,7 +56045,7 @@
 			(uuid "77591712-10a8-4f7a-a49d-c7924fd8de41")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -56306,7 +56306,7 @@
 			(uuid "18c9e9c8-46af-4b38-9245-2eeaf78ff103")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -57562,7 +57562,7 @@
 			(uuid "f434940f-7fe0-4555-8043-f4a0992b0723")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -57823,7 +57823,7 @@
 			(uuid "6e848f21-92a2-4319-a9dc-a86cd376aa61")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -59375,7 +59375,7 @@
 			(uuid "2627b42d-6558-44af-a9f9-a350c67e6dd1")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -61064,7 +61064,7 @@
 			(uuid "f8ef4990-afa8-4f48-a15a-8e7ce45138b3")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -61325,7 +61325,7 @@
 			(uuid "4a549e4f-c87a-485b-866f-f1806adba30c")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -61586,7 +61586,7 @@
 			(uuid "2c36d348-162e-4196-9186-b9bfa2e04551")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -61847,7 +61847,7 @@
 			(uuid "f6a2d562-e400-49b5-8471-f44e729046a1")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -62314,7 +62314,7 @@
 			(uuid "404252d6-b136-4da6-acd5-11a8323ae0ef")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -62706,7 +62706,7 @@
 			(uuid "be0e55c4-663d-415f-9d28-91c5916ad2de")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -64881,7 +64881,7 @@
 			(uuid "88f805ad-0557-4618-858e-6554f9432951")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -65142,7 +65142,7 @@
 			(uuid "8561ace8-6f57-4fd7-bb88-76dff593d6bc")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -65980,7 +65980,7 @@
 			(uuid "95936e05-a694-4d3e-a62e-68bd66f602a3")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -66241,7 +66241,7 @@
 			(uuid "f60b478c-4f01-4f70-9013-32a647f78ce2")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -66502,7 +66502,7 @@
 			(uuid "df277ecd-bad6-401f-84bf-f65dde6bc2e1")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -69366,7 +69366,7 @@
 			(uuid "660e68d1-c836-4ac4-af4b-76e1a955573d")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -69627,7 +69627,7 @@
 			(uuid "18271c34-7d3d-4aff-ba15-b6e431f99812")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -69888,7 +69888,7 @@
 			(uuid "967cab81-36af-4206-88e3-bec216fb90ea")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -70353,7 +70353,7 @@
 			(uuid "aaa7cdd3-0015-4b4c-bc62-e653887238a4")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -70614,7 +70614,7 @@
 			(uuid "bb6d6cca-ba75-4832-9267-59dabff64530")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -71232,7 +71232,7 @@
 			(uuid "f7160a46-02e8-4820-be79-382d70e31ce9")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -72131,7 +72131,7 @@
 			(uuid "c61c9c30-9d80-4eb9-af0d-c9231aa10680")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -72673,7 +72673,7 @@
 			(uuid "16d564a9-dd21-44e9-b535-421556f53e6e")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -73648,7 +73648,7 @@
 			(uuid "1a01a4b1-d050-427e-8556-9616f865e838")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -74394,7 +74394,7 @@
 			(uuid "d43616f0-8f70-4711-b74a-b7e4c666fe95")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -75972,7 +75972,7 @@
 			(uuid "2c503a80-a433-4cc4-b85b-3273e576f504")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -76233,7 +76233,7 @@
 			(uuid "69bd7b98-b9fa-45f2-b014-4160240a39ca")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -78687,7 +78687,7 @@
 			(uuid "c9285eb5-c75a-484e-a9e5-bb259f306f95")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -79662,7 +79662,7 @@
 			(uuid "f4830a54-31a4-452e-acb9-156c7cda4127")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -80280,7 +80280,7 @@
 			(uuid "4a4b8ede-f9cd-4cd1-8d77-9d4ea763484e")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -81612,7 +81612,7 @@
 			(uuid "f910b1d7-42b4-4f87-80fb-f14d0e351506")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -82434,7 +82434,7 @@
 			(uuid "9fd24bb5-13f2-4aff-9024-3c1a8082c7e1")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -82695,7 +82695,7 @@
 			(uuid "e4536940-e585-4e75-8783-0c7af64f4e09")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -83594,7 +83594,7 @@
 			(uuid "e4cac5fc-66ac-45eb-bc2a-cb178dca381d")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -84212,7 +84212,7 @@
 			(uuid "b035f560-dfa9-4410-b6bf-31bcc9102be9")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -84604,7 +84604,7 @@
 			(uuid "52a5a012-8834-4b27-ba29-17e9cf25f7dc")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -85783,7 +85783,7 @@
 			(uuid "ae4ae5f7-d871-4536-8338-b2c76898c77f")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -86044,7 +86044,7 @@
 			(uuid "c81b88fd-34f4-4fe2-8108-78d627585cdf")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -87708,7 +87708,7 @@
 			(uuid "775d006d-4da4-433e-b04f-e8fc7a779dbc")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -88173,7 +88173,7 @@
 			(uuid "3423e187-6b34-4c08-9cb7-0559c04f8713")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -88434,7 +88434,7 @@
 			(uuid "900561fd-5c76-4080-8d0c-7cbf47cb4537")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -90981,7 +90981,7 @@
 			(uuid "e6bb5c96-7299-4127-abc2-1bf393015f18")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/Zico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
+		(model "/home/nico/Documents/scottokeebs/Extras/ScottoKicad/3dmodels/ScottoKeebs_Components.3dshapes/LED_SK6812MINI.step"
 			(offset
 				(xyz 0 0 0)
 			)
