@@ -7415,6 +7415,28 @@
 			)
 		)
 	)
+	(global_label "d-"
+		(shape input)
+		(at 293.37 264.16 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2192dbc2-cdc9-4d6b-a1d6-dd318c7e7ad4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 293.37 258.4534 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "KS_L3"
 		(shape input)
 		(at 80.01 50.8 0)
@@ -8132,6 +8154,28 @@
 		(uuid "9215db25-3518-437b-a3c4-f8b3c83d1b23")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 46.7094 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "d+"
+		(shape input)
+		(at 288.29 261.62 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "94297eb1-44df-4a9c-8be9-58de1e7e73dc")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 288.29 255.9134 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10765,7 +10809,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_ISO14580"
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_ISO14580_Pad_TopBottom"
 			(at 344.17 167.64 0)
 			(effects
 				(font
@@ -11966,7 +12010,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_ISO14580"
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_ISO14580_Pad_TopBottom"
 			(at 316.23 166.37 0)
 			(effects
 				(font
@@ -12116,7 +12160,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_ISO14580"
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_ISO14580_Pad_TopBottom"
 			(at 290.83 166.37 0)
 			(effects
 				(font
