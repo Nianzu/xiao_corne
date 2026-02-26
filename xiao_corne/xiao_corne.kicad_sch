@@ -4695,6 +4695,19 @@
 		)
 		(uuid 717865ba-e82e-49a5-8e09-d1c2a1f6949a)
 	)
+	(circle
+		(center 275.59 270.51)
+		(radius 6.8392)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type color)
+			(color 255 0 0 1)
+		)
+		(uuid 77f05650-a552-4237-be23-6c3e36abae7e)
+	)
 	(rectangle
 		(start 16.51 16.51)
 		(end 163.83 133.35)
@@ -5488,6 +5501,14 @@
 	(no_connect
 		(at 219.71 173.99)
 		(uuid "9e0698a7-adaf-43ed-abd0-0cfcece301d5")
+	)
+	(no_connect
+		(at 273.05 271.78)
+		(uuid "a1388705-9839-4c79-8fd2-c214b21251bf")
+	)
+	(no_connect
+		(at 276.86 271.78)
+		(uuid "a1fbb1eb-b3d9-488d-91d0-11d281c028bb")
 	)
 	(no_connect
 		(at 181.61 276.86)
@@ -7967,7 +7988,7 @@
 	)
 	(global_label "BAT{slash}2 MON L"
 		(shape input)
-		(at 273.05 271.78 0)
+		(at 276.86 271.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7977,7 +7998,7 @@
 		)
 		(uuid "7b57ea3d-66fb-4565-9295-be4d6b3790bb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 288.9771 271.78 0)
+			(at 292.7871 271.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12332,6 +12353,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 449.58 180.34 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "59329773-1874-4e61-90d5-12cba5db3ba8")
+		(property "Reference" "#PWR028"
+			(at 443.23 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND L"
+			(at 445.77 180.3399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 449.58 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 449.58 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 449.58 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f5ba4d9e-842f-4c0d-b1ec-706c2abe4968")
+		)
+		(instances
+			(project "xiao_corne"
+				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
+					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 494.03 180.34 270)
 		(unit 1)
@@ -14772,72 +14860,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 227.33 330.2 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9aa1410f-4efa-46b5-99aa-7308d651831b")
-		(property "Reference" "#PWR017"
-			(at 227.33 336.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 227.33 335.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 227.33 330.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 227.33 330.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 227.33 330.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "cf9e4674-29a5-4ae1-96d0-a42cb2fe8a98")
-		)
-		(instances
-			(project "xiao_corne"
-				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
-					(reference "#PWR017")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "ScottoKeebs:LED_SK6812MINI")
 		(at 311.15 73.66 0)
 		(unit 1)
@@ -16132,6 +16154,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 227.33 330.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c2feb56f-c133-4a99-80b8-6193ec91123f")
+		(property "Reference" "#PWR05"
+			(at 227.33 336.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND L"
+			(at 227.33 334.3331 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 227.33 330.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 227.33 330.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 227.33 330.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0b2807e7-7dc4-4982-8388-18fc25bf298b")
+		)
+		(instances
+			(project "xiao_corne"
+				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 350.52 259.08 270)
 		(unit 1)
@@ -16618,73 +16706,6 @@
 			(project "xiao_corne"
 				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
 					(reference "#PWR044")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 449.58 180.34 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d4f93775-651e-4784-a1a8-920dfbccffbb")
-		(property "Reference" "#PWR028"
-			(at 443.23 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 445.77 180.3399 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 449.58 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 449.58 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 449.58 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "589f1ad9-df3d-407e-bb63-6d0b66905ddb")
-		)
-		(instances
-			(project "xiao_corne"
-				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
-					(reference "#PWR028")
 					(unit 1)
 				)
 			)
