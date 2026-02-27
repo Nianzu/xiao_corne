@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'MJTP1117'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Apem", "MJTP1117" (!) = "", "MJTP1117", "Other", "642-MJTP1117", "https://www.mouser.co.uk/ProductDetail/Apem/MJTP1117?qs=6hR9CYnVCPAeQNDPI%2FtCng%3D%3D", "", "", "APEM - MJTP1117 - TACTILE SW, SPST, 0.05A, 12VDC, TH", "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5561/MJTP%20thruhole.pdf", "4.3 mm"
+END_PART
+
+END.

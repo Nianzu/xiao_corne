@@ -1,0 +1,9 @@
+Manufacturer=Monolithic Power Systems (MPS)
+PartNumber=MPM3810GQB-33-Z
+PartCategory=Integrated Circuit
+PackageCategory=Other
+PinCount=14
+Version=1.6
+Released=2018-10-25 16:56:19
+Downloaded=2026-02-27 05:49:00
+3D=Y

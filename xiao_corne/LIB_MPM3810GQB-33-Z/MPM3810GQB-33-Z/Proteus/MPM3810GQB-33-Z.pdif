@@ -1,0 +1,230 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "MPM3810GQB-33-Z"
+   (description "Switching Voltage Regulators 6V Input 3.3V Output 4Mhz, 1A Step-Down")
+   (family "ANA")
+   (package "MPM3810GQB33Z")
+   (attribute "Datasheet Link" "https://www.monolithicpower.com/pub/media/document/MPM3810_r1.1.pdf")
+   (attribute "Geometry.Height" "1mm")
+   (attribute "Mouser Part Number" "946-MPM3810GQB-33-Z")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Monolithic-Power-Systems-MPS/MPM3810GQB-33-Z?qs=WskeALMjHsooCNVHuZWMUQ%3D%3D")
+   (attribute "Manufacturer_Name" "Monolithic Power Systems (MPS)")
+   (attribute "Manufacturer_Part_Number" "MPM3810GQB-33-Z")
+   (gate
+    (symbol "MPM3810GQB-33-Z")
+    (pin "PGND_1" 1 PS)
+    (pin "PGND_2" 2 PS)
+    (pin "NC_1" 3 PS)
+    (pin "NC_2" 4 PS)
+    (pin "OUT_1" 5 PS)
+    (pin "OUT_2" 6 PS)
+    (pin "VIN" 7 PS)
+    (pin "PG" 8 PS)
+    (pin "EN" 9 PS)
+    (pin "NC_3" 10 PS)
+    (pin "AGND" 11 PS)
+    (pin "OUT_S" 12 PS)
+    (pin "NC_4" 13 PS)
+    (pin "OUT_3" 14 PS)
+   )
+  )
+  (symbol "MPM3810GQB-33-Z"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 1100 100) (pt 1100 -700) (pt 200 -700) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -300) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -400) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -500) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -600) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -200) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -300) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -400) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -500) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -600) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "MPM3810GQB33Z"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -1.25 1.5)
+      (pt 1.25 1.5)
+      (pt 1.25 -1.5)
+      (pt -1.25 -1.5)
+      (pt -1.25 1.5))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -2.5 2.5)
+      (pt 2.25 2.5)
+      (pt 2.25 -2.2)
+      (pt -2.5 -2.2)
+      (pt -2.5 2.5))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -1.25 -1.5)
+      (pt 1.25 -1.5))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1.7 0.7)
+      (arc (pt -1.700 0.700) (pt -1.800 0.650) (pt -1.700 0.750) (start -180.0) (sweep .0))
+      (pt -1.8 0.7)
+      (arc (pt -1.800 0.700) (pt -1.800 0.650) (pt -1.700 0.750) (start -180.0) (sweep 180.0))
+      (pt -1.7 0.7))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -1.25 1)
+      (pt -1.25 1.45)
+      (pt -1.25 1.5)
+      (pt -1.035 1.5))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt 1.25 1)
+      (pt 1.25 1.5)
+      (pt 1 1.5))))
+   (leg 1 (pt -1.025 0.700) (padstack 0))
+   (leg 2 (pt -1.025 0.300) (padstack 0))
+   (leg 3 (pt -1.300 -0.350) (padstack 3))
+   (leg 4 (pt -1.300 -1.000) (padstack 4))
+   (leg 5 (pt 1.300 -1.000) (padstack 5))
+   (leg 6 (pt 1.300 -0.350) (padstack 6))
+   (leg 7 (pt 1.025 0.300) (padstack 0))
+   (leg 8 (pt 1.025 0.700) (padstack 0))
+   (leg 9 (pt 0.600 1.450) (padstack 9))
+   (leg 10 (pt 0.200 1.450) (padstack 10))
+   (leg 11 (pt -0.200 1.450) (padstack 11))
+   (leg 12 (pt -0.600 1.450) (padstack 12))
+   (leg 13 (pt -0.775 -0.675) (padstack 13))
+   (leg 14 (pt 0.775 -0.675) (padstack 14))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 0.200 1.050 0 0 0.000))
+   )
+   (padstack 3
+    (plated false)
+    (pad (layer TCOP) (rectf 0.250 0.500 0 0 0.000))
+   )
+   (padstack 4
+    (plated false)
+    (pad (layer TCOP) (rectf 0.250 0.500 0 0 0.000))
+   )
+   (padstack 5
+    (plated false)
+    (pad (layer TCOP) (rectf 0.250 0.500 0 0 0.000))
+   )
+   (padstack 6
+    (plated false)
+    (pad (layer TCOP) (rectf 0.250 0.500 0 0 0.000))
+   )
+   (padstack 9
+    (plated false)
+    (pad (layer TCOP) (rectf 0.200 0.700 0 0 90.000))
+   )
+   (padstack 10
+    (plated false)
+    (pad (layer TCOP) (rectf 0.200 0.700 0 0 90.000))
+   )
+   (padstack 11
+    (plated false)
+    (pad (layer TCOP) (rectf 0.200 0.700 0 0 90.000))
+   )
+   (padstack 12
+    (plated false)
+    (pad (layer TCOP) (rectf 0.200 0.700 0 0 90.000))
+   )
+   (padstack 13
+    (plated false)
+    (pad (layer TCOP) (rectf 0.550 1.200 0 0 90.000))
+   )
+   (padstack 14
+    (plated false)
+    (pad (layer TCOP) (rectf 0.550 1.200 0 0 90.000))
+   )
+   (model "MPM3810GQB-33-Z.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

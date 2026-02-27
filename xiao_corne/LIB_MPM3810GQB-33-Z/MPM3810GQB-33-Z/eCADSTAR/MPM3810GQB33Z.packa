@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "MPM3810GQB-33-Z"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2018-10-25-16:56:19)
+    (mountForm default
+        (footprintRef "MPM3810GQB33Z")
+        (spec "System")
+    )
+)

@@ -1,0 +1,18 @@
+.MJTP1117 :1 ;APEM - MJTP1117 - TACTILE SW, SPST, 0.05A, 12VDC, TH
+MJTP1117
+*STM S
+*NGS
+*PLB 1="COM" 2="NO" 3="MH1" 4="MH2"
+*MXP 4
+*DFN MJTP1117
+~!Manufacturer_Name (Apem)
+~!Manufacturer_Part_Number (MJTP1117)
+~!Mouser Part Number (642-MJTP1117)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Apem/MJTP1117?qs=6hR9CYnVCPAeQNDPI%2FtCng%3D%3D)
+~!Arrow Part Number (-)
+~!Arrow Price/Stock (-)
+~!Link Datasheet (https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5561/MJTP%20thruhole.pdf)
+~!Height (4.3mm)
+~!3D_Model (MJTP1117)
+MJTP1117
+1.1!U 2.1!U 3.1!U 4.1!U 

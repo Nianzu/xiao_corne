@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MPM3810GQB-33-Z
+D Switching Voltage Regulators 6V Input 3.3V Output 4Mhz, 1A Step-Down
+K
+F https://www.monolithicpower.com/pub/media/document/MPM3810_r1.1.pdf
+$ENDCMP
+#
+#End Doc Library

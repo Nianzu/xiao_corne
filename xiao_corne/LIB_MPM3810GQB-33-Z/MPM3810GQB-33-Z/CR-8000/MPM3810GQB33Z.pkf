@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "MPM3810GQB33Z"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "MPM3810GQB33Z")
+        (spec "default")
+    )
+)

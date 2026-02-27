@@ -1,0 +1,16 @@
+.MPM3810GQB-33-Z :1 ;Switching Voltage Regulators 6V Input 3.3V Output 4Mhz, 1A Step-Down
+MPM3810GQB33Z
+*STM IC
+*NGS
+*PLB 1="PGND_1" 2="PGND_2" 3="NC_1" 4="NC_2" 5="OUT_1" 6="OUT_2" 7="VIN" 8="PG" 9="EN" 10="NC_3" 11="AGND" 12="OUT_S" 13="NC_4" 14="OUT_3"
+*MXP 14
+*DFN MPM3810GQB-33-Z
+~!Mouser Part Number (946-MPM3810GQB-33-Z)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Monolithic-Power-Systems-MPS/MPM3810GQB-33-Z?qs=WskeALMjHsooCNVHuZWMUQ%3D%3D)
+~!Manufacturer_Name (Monolithic Power Systems (MPS))
+~!Manufacturer_Part_Number (MPM3810GQB-33-Z)
+~!Link Datasheet (https://www.monolithicpower.com/pub/media/document/MPM3810_r1.1.pdf)
+~!Height (1mm)
+~!3D_Model (MPM3810GQB-33-Z)
+MPM3810GQB-33-Z
+1.1!U 2.1!U 3.1!U 4.1!U 5.1!U 6.1!U 7.1!U 8.1!U 9.1!U 10.1!U 11.1!U 12.1!U 13.1!U 14.1!U 
