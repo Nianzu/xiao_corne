@@ -4556,7 +4556,7 @@
 		(stroke
 			(width 0.508)
 			(type solid)
-			(color 255 153 0 1)
+			(color 0 194 0 1)
 		)
 		(fill
 			(type none)
@@ -5378,6 +5378,10 @@
 	(no_connect
 		(at 181.61 276.86)
 		(uuid "b2ea8c12-e2b4-4d0f-827d-35f3c7b84af6")
+	)
+	(no_connect
+		(at 102.87 265.43)
+		(uuid "ba47cb70-ad61-46f4-a810-3b1339fe1508")
 	)
 	(no_connect
 		(at 219.71 166.37)
@@ -6882,16 +6886,6 @@
 			(type default)
 		)
 		(uuid "f1bef168-89f0-43be-9fe9-c54aa46b0138")
-	)
-	(wire
-		(pts
-			(xy 102.87 265.43) (xy 111.76 265.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f2994d91-70d4-4520-bc76-e2a996c79959")
 	)
 	(wire
 		(pts
@@ -15167,73 +15161,6 @@
 			(project "xiao_corne"
 				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
 					(reference "#PWR045")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 111.76 265.43 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b9adebdf-6b36-4ec0-aa3b-6d9c8dee2be6")
-		(property "Reference" "#PWR056"
-			(at 118.11 265.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND L"
-			(at 115.57 265.4299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 111.76 265.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 111.76 265.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 111.76 265.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c64e8c35-2962-458b-bb9d-665355559b40")
-		)
-		(instances
-			(project "xiao_corne"
-				(path "/efa30048-eef2-4d23-8f91-f1f3cca8359e"
-					(reference "#PWR056")
 					(unit 1)
 				)
 			)
