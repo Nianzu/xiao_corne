@@ -62,6 +62,18 @@
       ],
       "drc_exclusions": [
         [
+          "copper_edge_clearance|354878000|105023516|a271441d-9536-4065-8b63-34dbe6f0ed2a|a8573a23-a405-4917-b1da-49cab7c08e70",
+          ""
+        ],
+        [
+          "copper_edge_clearance|354878000|66921484|a271441d-9536-4065-8b63-34dbe6f0ed2a|3a06bda2-8ed5-4149-b5af-991f40303d1c",
+          ""
+        ],
+        [
+          "copper_edge_clearance|354878000|85972500|a271441d-9536-4065-8b63-34dbe6f0ed2a|658f0f88-7fe6-4ef8-bd24-4609233809ab",
+          ""
+        ],
+        [
           "shorting_items|223507001|123926000|78c018b3-18aa-4a0f-a942-a8f433d9eaba|9f90736f-dca4-4e08-a98c-e17bd7cf83b2",
           ""
         ],
@@ -115,6 +127,10 @@
         ],
         [
           "solder_mask_bridge|225332000|65526000|ef977494-1864-4f7e-a427-4be35dc11e3e|90523a29-3b9b-4b86-86b4-73269177e5d2",
+          ""
+        ],
+        [
+          "starved_thermal|235031999|75125999|eb9e872c-4459-4db3-8a64-90f5850ff45f|dc446f26-71ec-4ff5-b3fa-bfc389b6572c|B.Cu",
           ""
         ]
       ],
